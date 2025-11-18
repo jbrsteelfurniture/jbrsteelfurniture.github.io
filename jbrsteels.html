@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Steel Works</title>
+
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#f4f4f4; color:#222; }
+
+    /* Header */
+    header { 
+      background:#101010; 
+      color:white; 
+      padding:20px 40px; 
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center; 
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    header h1 { margin:0; font-size:30px; letter-spacing:1px; }
+    nav a { 
+      color:white; 
+      text-decoration:none; 
+      margin-left:25px; 
+      font-size:17px; 
+      transition:0.2s;
+    }
+    nav a:hover { color:#00d4ff; }
+
+    /* Hero Banner */
+    .hero {
+      background:url('https://images.unsplash.com/photo-1581090464777-43de8874b16c?q=80') center/cover no-repeat;
+      height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      text-shadow:0 0 15px black;
+    }
+    .hero h2 { font-size:50px; max-width:900px; }
+
+    /* Section */
+    .section { padding:70px 40px; }
+    .section h2 { text-align:center; font-size:34px; margin-bottom:40px; }
+
+    /* Product Cards */
+    .products { 
+      display:grid; 
+      grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); 
+      gap:35px; 
+    }
+    .card {
+      background:white;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 4px 20px rgba(0,0,0,0.12);
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .card:hover { transform:translateY(-8px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
+
+    .card img { width:100%; height:230px; object-fit:cover; }
+    .card h3 { margin:18px; font-size:22px; }
+    .card p { margin:0 18px 20px; font-size:15px; color:#666; }
+    .price-tag { margin:0 18px 20px; font-weight:bold; color:#111; }
+
+    /* Popup Product Page */
+    .popup {
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+    .popup-content {
+      background:white;
+      width:100%;
+      max-width:600px;
+      border-radius:20px;
+      overflow:hidden;
+      animation:pop 0.3s ease;
+    }
+    @keyframes pop {
+      from { transform:scale(0.8); opacity:0; } 
+      to { transform:scale(1); opacity:1; }
+    }
+    .popup-content img { width:100%; height:320px; object-fit:cover; }
+    .popup-content h3 { margin:20px; font-size:26px; }
+    .popup-content p { margin:20px; font-size:17px; color:#444; }
+    .popup-content .price { margin:20px; font-size:20px; font-weight:bold; }
+    .close-btn {
+      background:#222; color:white; padding:10px 20px; margin:20px;
+      border-radius:8px; display:inline-block; cursor:pointer;
+    }
+    .whatsapp-btn {
+      background:#25d366; color:white; padding:12px 22px; margin:20px;
+      border-radius:8px; display:inline-block; cursor:pointer; text-decoration:none;
+      font-size:17px;
+    }
+
+    /* Footer */
+    footer {
+      background:#191919;
+      color:white;
+      text-align:center;
+      padding:30px;
+      font-size:15px;
+      margin-top:40px;
+    }
+  </style>
+
+  <script>
+    function openProduct(img, title, desc, price) {
+      document.getElementById("pimg").src = img;
+      document.getElementById("ptitle").innerText = title;
+      document.getElementById("pdesc").innerText = desc;
+      document.getElementById("pprice").innerText = "Price: " + price;
+      document.getElementById("popup").style.display = "flex";
+    }
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>Premium Steel Works</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2 style="color:black;">EB Panels • Steel Almirahs • Steel Cot • Racks • School Benches</h2>
+</section>
+
+<section id="about" class="section">
+  <h2>About Us</h2>
+  <p style="max-width:850px; margin:auto; font-size:19px; line-height:1.7; text-align:center;">
+    We are a traditional steel fabrication workshop specialising in EB panel boards, steel wardrobes(Almirah), Steel cots, tables, drawers, storage racks,customised shelf almirah and 
+    custom industrial furniture. With decades of experience, we deliver durable, precision-made steel items ready for any finishing process.
+  </p>
+</section>
+
+<section id="products" class="section">
+  <h2>Our Products</h2>
+
+  <div class="products">
+
+    <!-- EB Panel -->
+    <div class="card" onclick="openProduct('ebpanel.jpg', 'EB Panel Boards', 'High-grade precision EB panels built for safety and long-term reliability.', '₹7,500 – ₹40,000')">
+      <img src="ebpanel.jpg">
+      <h3>EB Panel Boards</h3>
+      <p>Quality power distribution panels for industrial & residential use.</p>
+      <div class="price-tag">₹7,500 – ₹25,000</div>
+    </div>
+
+    <!-- Steel Almirah -->
+    <div class="card" onclick="openProduct('steelalmirah.jpg', 'Steel Almirah', 'Premium heavy-duty steel wardrobes built to last decades.', '₹10,000 – ₹32,000')">
+      <img src="steelalmirah.jpg">
+      <h3>Steel Almirahs</h3>
+      <p>Long-lasting steel almirahs with multiple design options.</p>
+      <div class="price-tag">₹10,000 – ₹32,000</div>
+    </div>
+
+    <!-- Steel Cot -->
+    <div class="card" onclick="openProduct('steelcot.jpg', 'Steel Cot', 'Stable, heavy-duty steel cots suitable for homes, hostels & industries.', '₹4,000 – ₹12,000')">
+      <img src="steelcot.jpg">
+      <h3>Steel Cot</h3>
+      <p>Custom sizes available for all types of bed frames.</p>
+      <div class="price-tag">₹4,000 – ₹12,000</div>
+    </div>
+
+    <!-- Storage Racks -->
+    <div class="card" onclick="openProduct('rack.jpg', 'Storage Rack', 'Heavy-duty industrial storage racks for factories and godowns.', '₹2,000 – ₹18,000')">
+      <img src="rack.jpg">
+      <h3>Storage Racks</h3>
+      <p>High load-bearing capacity for industrial use.</p>
+      <div class="price-tag">₹2,000 – ₹18,000</div>
+    </div>
+
+    <!-- School Benches -->
+    <div class="card" onclick="openProduct('table.jpg', 'School Tables & Benches', 'Durable and long-lasting steel-framed school furniture.', '₹1,200 – ₹4,500')">
+      <img src="table.jpg">
+      <h3>School Furniture</h3>
+      <p>Ergonomic & durable for schools and colleges.</p>
+      <div class="price-tag">₹1,200 – ₹4,500</div>
+    </div>
+	    <!-- Shel almirah -->
+    <div class="card" onclick="openProduct('shelfalmirah.jpg', 'School Tables & Benches', 'Durable and long-lasting steel-framed school furniture.', '₹1,200 – ₹4,500')">
+      <img src="shelfalmirah.jpg">
+      <h3>Shelf Altered as Almirah</h3>
+      <p>Shelf can be used as almirah.</p>
+      <div class="price-tag">₹2,000 – ₹4,500</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <img id="pimg">
+    <h3 id="ptitle"></h3>
+    <p id="pdesc"></p>
+    <div class="price" id="pprice"></div>
+
+    <a id="whatsapp" href="https://wa.me/919790666249?text=Hi%2C%20I%20am%20interested%20in%20your%20product" target="_blank" class="whatsapp-btn">Order on WhatsApp</a>
+
+    <div class="close-btn" onclick="closePopup()">Close</div>
+  </div>
+</div>
+
+<section id="contact" class="section">
+  <h2>Contact Us</h2>
+  <p style="text-align:center; font-size:18px;">
+    📍 S.S Nagar, Dindigul, Tamil Nadu<br>
+    <a href="https://maps.app.goo.gl/B17uuMewQeES4XXv8" target="_blank" style="font-size:18px; color:#0077cc;">📌 View on Map</a><br><br>
+    📞 +91 9790666249<br>
+    ✉ jbrsteelfurniture@gmail.com
+  </p>
+</section>
+
+<footer>
+  © 2025 Premium Steel Works — All Rights Reserved
+</footer>
+
+</body>
+</html>
